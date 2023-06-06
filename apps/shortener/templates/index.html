@@ -1,0 +1,81 @@
+[[extend 'layout.html']]
+
+<section class="section">
+  <div class="title">Your Shortened URL's</div>
+  <!-- Complete -->
+  <table class="table is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>URL name</th>
+        <th>Original URL</th>
+        <th>Shortened URL</th>
+        <th>Date Created</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>Share</th>
+      </tr>
+    </thead>
+    <tbody>
+      [[for row in rows:]]
+      <tr>
+        <td>[[=row.url_name]]</td>
+        <td>[[=row.long_url]]</td>
+        <td>
+          <div style="display: flex; align-items: center">
+            <a href="[[=URL('redirect', row.short_id)]]">
+              http://localhost:8000/shortener/redirect/[[=row.short_id]]
+            </a>
+            <button
+              onclick="copyToClipboard('http://localhost:8000/shortener/redirect/[[=row.short_id]]')"
+            >
+              Copy
+            </button>
+          </div>
+        </td>
+
+        <td>[[=row.created_at]]</td>
+        <td>
+          <a class="button" href="[[=URL('edit', row.id)]]">
+            <i class="fa fa-fw fa-pencil"></i>
+            Edit
+          </a>
+        </td>
+
+        <td>
+          <a class="button" href="[[=URL('delete', row.id)]]">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+        <td>
+          <a class="button" href="[[=URL('share', row.id)]]">
+            <i class="fa fa-share"></i>
+          </a>
+        </td>
+      </tr>
+      [[pass]]
+    </tbody>
+  </table>
+
+  <a class="button is-success" href="[[=URL('shorten')]]">
+    <span class="icon">
+      <i class="fa fa-plus"></i>
+    </span>
+    <span>Shorten a URL</span>
+  </a>
+
+  <script>
+    function copyToClipboard(text) {
+      // create a temporary input element to hold the text to be copied
+      var tempInput = document.createElement("input");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+
+      // select the text in the input element and copy it to the clipboard
+      tempInput.select();
+      document.execCommand("copy");
+
+      // remove the temporary input element from the DOM
+      document.body.removeChild(tempInput);
+    }
+  </script>
+</section>
