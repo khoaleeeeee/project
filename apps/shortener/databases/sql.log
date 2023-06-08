@@ -195,3 +195,97 @@ success!
 success!
 success!
 success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2023-06-07T18:13:20.644684
+ALTER TABLE "url_mappings" ADD "created_on" TIMESTAMP;
+timestamp: 2023-06-07T18:13:20.653086
+ALTER TABLE "url_mappings" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+timestamp: 2023-06-07T18:13:20.654429
+ALTER TABLE "url_mappings" ADD "modified_on" TIMESTAMP;
+timestamp: 2023-06-07T18:13:20.655289
+ALTER TABLE "url_mappings" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+timestamp: 2023-06-07T18:13:20.656208
+ALTER TABLE "url_mappings" ADD "is_active" CHAR(1);
+success!
+timestamp: 2023-06-07T18:13:20.658548
+ALTER TABLE "shared_urls" ADD "created_on" TIMESTAMP;
+timestamp: 2023-06-07T18:13:20.659164
+ALTER TABLE "shared_urls" ADD "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+timestamp: 2023-06-07T18:13:20.659852
+ALTER TABLE "shared_urls" ADD "modified_on" TIMESTAMP;
+timestamp: 2023-06-07T18:13:20.660333
+ALTER TABLE "shared_urls" ADD "modified_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+timestamp: 2023-06-07T18:13:20.660792
+ALTER TABLE "shared_urls" ADD "is_active" CHAR(1);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

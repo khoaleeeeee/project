@@ -1,0 +1,50 @@
+[[extend 'layout.html']]
+
+<div class="section" id="vue-target">
+  <h1 class="title">Your Received URL's</h1>
+
+  <table class="table is-striped is-fullwidth">
+    <thead>
+      <tr>
+        <th>URL name</th>
+        <th>Original URL</th>
+        <th>Shortened URL</th>
+        <th>Date Created</th>
+        <th>Shared By</th>
+        <th>re-Share</th>
+      </tr>
+    </thead>
+    <tbody v-for="url in received_urls">
+      <tr>
+        <td>{{url.url_name}}</td>
+        <td>{{url.long_url}}</td>
+        <td>
+          <div style="display: flex; align-items: center">
+            <a :href="url.short_url">{{url.short_url}}</a>
+            <button @click="copyToClipboard(url.short_url)">Copy</button>
+          </div>
+        </td>
+
+        <td>{{url.created_at}}</td>
+        <td>{{url.shared_by.first_name}} {{url.shared_by.last_name}}</td>
+        <td>
+          <a class="button" @click="reshare(url.id)">
+            <i class="fa fa-share"></i>
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <a class="button" href="[[=URL('index')]]">
+    <i class="fa fa-fw fa-arrow-left"></i>
+    Back
+  </a>
+  [[block page_scripts]]
+  <!-- Loads the Vue.js library -->
+  <script>
+    let get_received_url = "[[=XML(get_received_url)]]";
+    let page = "received";
+  </script>
+  <script src="js/index.js"></script>
+  [[end]]
+</div>

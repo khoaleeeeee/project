@@ -1,7 +1,7 @@
 [[extend 'layout.html']]
 
 <div class="section" id="vue-target">
-  <h1 class="title">Choose a user to share URL</h1>
+  <h1 class="title">Select a user to share this URL</h1>
 
   <div class="field">
     <p class="control has-icons-right">
@@ -16,10 +16,23 @@
   </div>
 
   <div v-for="user in users" class="field">
-    <span>{{user.username}} ({{ user.first_name }} {{user.last_name}})</span>
-    <button @click="send(user.id)">Share</button>
+    <span class="subtitle is-4"
+      >{{user.username}} ({{ user.first_name }} {{user.last_name}})</span
+    >
+    <template v-if="user.is_shared">
+      <span class="has-text-success">
+        <i class="fa fa-check-square"></i>
+        URL successfully shared</span
+      >
+    </template>
+    <template v-else>
+      <button class="button is-small" @click="send(user.id)">Share</button>
+    </template>
   </div>
-
+  <a class="button is-primary is-ligh" href="[[=URL('index')]]">
+    <i class="fa fa-fw fa-arrow-left"></i>
+    Back
+  </a>
   [[block page_scripts]]
   <!-- Loads the Vue.js library -->
 
@@ -27,6 +40,7 @@
     let get_users_url = "[[=XML(get_users_url)]]";
     let url_id = "[[=XML(url_id)]]";
     let send_url = "[[=XML(send_url)]]";
+    let page = "share";
   </script>
   <script src="js/index.js"></script>
   [[end]]

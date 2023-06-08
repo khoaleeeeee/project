@@ -27,18 +27,20 @@ def get_time():
 
 db.define_table('url_mappings',
     Field('url_name',  requires=IS_NOT_EMPTY() ),
-    Field('long_url',  requires=IS_NOT_EMPTY()),
+    Field('long_url', requires=[IS_NOT_EMPTY(), IS_NOT_IN_DB(db, 'url_mappings.long_url')]),
     Field('short_id', requires=IS_NOT_EMPTY()),
     Field('user_id', 'reference auth_user', default=lambda: get_user_id()),
     Field('user_email',  default=lambda: get_user_email()),
-    Field('created_at', 'datetime', default=get_time)
+    Field('created_at', 'datetime', default=get_time),
+    auth.signature
 )
 
 db.define_table('shared_urls',
     Field('url_mapping_id', 'reference url_mappings'),
-    Field('shared_with', 'list:string'),
+    Field('shared_with', 'reference auth_user'),
     Field('shared_by', 'reference auth_user', default=lambda: get_user_id()),
-    Field('shared_at', 'datetime', default=get_time)
+    Field('shared_at', 'datetime', default=get_time),
+    auth.signature
 )
 
 db.shared_urls.id.readable = db.shared_urls.id.writable = False
@@ -50,6 +52,5 @@ db.url_mappings.short_id.readable = db.url_mappings.short_id.writable = False
 db.url_mappings.user_id.readable = db.url_mappings.user_id.writable = False
 db.url_mappings.user_email.readable = db.url_mappings.user_email.writable = False
 db.url_mappings.created_at.writable = False
-
 
 db.commit()

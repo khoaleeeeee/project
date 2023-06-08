@@ -1,7 +1,7 @@
 [[extend 'layout.html']]
 
 <section class="section">
-  <div class="title">Your Shortened URL's</div>
+  <div class="title">Shortened URL's</div>
   <!-- Complete -->
   <table class="table is-striped is-fullwidth">
     <thead>
@@ -23,10 +23,10 @@
         <td>
           <div style="display: flex; align-items: center">
             <a href="[[=URL('redirect', row.short_id)]]">
-              http://localhost:8000/shortener/redirect/[[=row.short_id]]
+              localhost:8000/shortener/redirect/[[=row.short_id]]
             </a>
             <button
-              onclick="copyToClipboard('http://localhost:8000/shortener/redirect/[[=row.short_id]]')"
+              onclick="copyToClipboard('localhost:8000/shortener/redirect/[[=row.short_id]]')"
             >
               Copy
             </button>
@@ -63,7 +63,15 @@
     <span>Shorten a URL</span>
   </a>
 
+  <a class="button is-primary" href="[[=URL('received')]]">
+    <span class="icon">
+      <i class="fa fa-plus"></i>
+    </span>
+    <span>Your received URL's</span>
+  </a>
+
   <script>
+    // function to copy text to clipboard
     function copyToClipboard(text) {
       // create a temporary input element to hold the text to be copied
       var tempInput = document.createElement("input");
