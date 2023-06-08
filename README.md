@@ -2,7 +2,7 @@
 
 ## Home Page:
 
-![Example Photo](images/homepage1.png)
+<img src="images/homepage1.png" alt="Example Photo" width="50%">
 
 The "Shorten a URL" button navigates to a form in which the user can enter the original URL and URL's name. After submitting, the table on the home page contains a new entry like this:
 
